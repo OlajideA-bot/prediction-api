@@ -1,0 +1,33 @@
+### 1. Create a user
+POST http://localhost:4000/api/prediction/create/user/
+Content-Type: application/json
+
+{
+  "number": "08012345678",
+  "pin": "1234",
+  "confirm_pin": "1234"
+}
+### 2. Validation check - mismatched PINs should FAIL
+POST http://localhost:4000/api/prediction/create/user/
+Content-Type: application/json
+
+{
+  "number": "08099999999",
+  "pin": "1234",
+  "confirm_pin": "0000"
+}
+
+### 3. Login - returns a token
+POST http://localhost:4000/api/prediction/login/user/
+Content-Type: application/json
+
+{
+  "number": "08012345678",
+  "pin": "1234"
+}
+### 4. Protected route WITH token - should work
+GET http://localhost:4000/api/prediction/general/today/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibnVtYmVyIjoiMDgwMTIzNDU2NzgiLCJpYXQiOjE3ODIzNjgxMTksImV4cCI6MTc4Mjk3MjkxOX0.QQZrtGSaxJKW_inmYwjXmlYw4-jlWZtzUfgifUoCDhU
+
+### 5. Protected route WITHOUT token - should be rejected
+GET http://localhost:4000/api/prediction/general/today/
