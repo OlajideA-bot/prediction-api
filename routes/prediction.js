@@ -21,7 +21,6 @@ function parsePageParams(query) {
   return { page, page_size };
 }
 
-// POST /api/prediction/create/user/
 router.post('/create/user/', async (req, res) => {
   const { number, pin, confirm_pin } = req.body;
 
@@ -47,7 +46,6 @@ router.post('/create/user/', async (req, res) => {
   });
 });
 
-// POST /api/prediction/login/user/
 router.post('/login/user/', async (req, res) => {
   const { number, pin } = req.body;
 
@@ -70,7 +68,6 @@ router.post('/login/user/', async (req, res) => {
   return res.status(200).json({ message: 'Login successful', token });
 });
 
-// POST /api/prediction/change/password/
 router.post('/change/password/', auth, async (req, res) => {
   const { old_pin, new_pin } = req.body;
 
@@ -89,7 +86,6 @@ router.post('/change/password/', auth, async (req, res) => {
   return res.status(200).json({ message: 'Password changed successfully' });
 });
 
-// POST /api/prediction/forgot/password/
 router.post('/forgot/password/', (req, res) => {
   const { phone_number } = req.body;
 
@@ -109,7 +105,6 @@ router.post('/forgot/password/', (req, res) => {
   return res.status(200).json({ message: 'If an account with that number exists, a reset code has been sent.' });
 });
 
-// POST /api/prediction/reset/password/
 router.post('/reset/password/', async (req, res) => {
   const { phone_number, pin } = req.body;
 
@@ -127,7 +122,6 @@ router.post('/reset/password/', async (req, res) => {
   return res.status(200).json({ message: 'Password reset successfully' });
 });
 
-// POST /api/prediction/update/password/
 router.post('/update/password/', async (req, res) => {
   const { number, pin, confirm_pin } = req.body;
 
@@ -148,7 +142,6 @@ router.post('/update/password/', async (req, res) => {
   return res.status(200).json({ message: 'Password updated successfully' });
 });
 
-// GET /api/prediction/general/
 router.get('/general/', (req, res) => {
   const { search } = req.query;
   const { page, page_size } = parsePageParams(req.query);
@@ -167,7 +160,6 @@ router.get('/general/', (req, res) => {
   return res.status(200).json({ items, count });
 });
 
-// GET /api/prediction/general/today/
 router.get('/general/today/', auth, (req, res) => {
   const { search } = req.query;
   const { page, page_size } = parsePageParams(req.query);
@@ -191,7 +183,6 @@ router.get('/general/today/', auth, (req, res) => {
   return res.status(200).json({ items, count });
 });
 
-// GET /api/prediction/general/vip/
 router.get('/general/vip/', auth, (req, res) => {
   const { search } = req.query;
   const { page, page_size } = parsePageParams(req.query);
@@ -213,7 +204,6 @@ router.get('/general/vip/', auth, (req, res) => {
   return res.status(200).json({ items, count });
 });
 
-// GET /api/prediction/accumulator/
 router.get('/accumulator/', auth, (req, res) => {
   const { search } = req.query;
   const { page, page_size } = parsePageParams(req.query);
@@ -235,7 +225,6 @@ router.get('/accumulator/', auth, (req, res) => {
   return res.status(200).json({ items, count });
 });
 
-// GET /api/prediction/bet_of_day/
 router.get('/bet_of_day/', auth, (req, res) => {
   return res.status(200).json({
     message: 'Bet of the day retrieved successfully',

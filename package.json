@@ -1,15 +1,12 @@
 {
   "name": "prediction-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Football prediction REST API with JWT authentication and in-memory data",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
